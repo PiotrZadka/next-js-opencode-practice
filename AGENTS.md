@@ -18,3 +18,6 @@
 ## Configuration
 - Consult `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md` if they exist.
 - **Update this file** with specific commands as the project structure is defined.
+
+## Interaction Guidelines
+- Do not write or modify code until the user explicitly approves the plan. Always explain the logic and the 'why' before implementation.

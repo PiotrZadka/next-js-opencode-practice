@@ -1,22 +1,24 @@
-# Learning Tasks & Roadmap
+# Learning Tasks & Roadmap (Senior Path)
 
 Use this file to track specific implementation tasks. Mark them as complete (`[x]`) when you feel confident in the concept.
 
-## Phase 1: Basics & Components
-- [ ] **First Component**: Create a simple UI component (e.g., Hero section) to test the workflow.
-- [ ] **Styling**: Customize Tailwind config or add custom CSS modules to see how styling works in Next.js.
-- [ ] **Layouts**: Modify `layout.tsx` to add a persistent navigation bar.
+## Phase 1: The New Paradigm (RSC)
+- [x] **Server vs Client Boundaries**: Implement a complex component tree, identifying exactly where `'use client'` is required and why (interactivity, hooks, browser APIs).
+- [x] **Data Fetching**: Fetch data directly in `async` Server Components using native `fetch` with caching/revalidation strategies.
+- [x] **Layouts & Composition**: Optimize layout shifts by using nested layouts and passing Client Components as children to Server Components to maintain server-side rendering for as much of the tree as possible.
 
-## Phase 2: Routing & Navigation
-- [ ] **Basic Routing**: Create a new page (e.g., `/about`) to understand file-system routing.
-- [ ] **Dynamic Routing**: Create a dynamic route (e.g., `/blog/[slug]`).
-- [ ] **Navigation**: Use the `<Link>` component to navigate between pages.
+## Phase 2: React 19 & Server Actions
+- [ ] **Server Actions**: Implement data mutations using Server Actions instead of traditional API Route Handlers.
+- [ ] **Enhanced Forms**: Use React 19 `useActionState` (formerly `useFormState`) for handling form response data and errors.
+- [ ] **Pending States**: Implement `useFormStatus` to handle loading states in nested form elements.
+- [ ] **Optimistic Updates**: Use `useOptimistic` to provide instant UI feedback during Server Action execution.
 
-## Phase 3: Data & Backend
-- [ ] **Server Components**: Fetch data directly in a Server Component (async/await).
-- [ ] **Client Components**: Use `useEffect` and `useState` for client-side interactivity.
-- [ ] **API Routes**: Create a simple Route Handler (`app/api/hello/route.ts`).
+## Phase 3: Performance & Streaming
+- [ ] **Streaming & Suspense**: Break down a heavy page into chunks using `<Suspense>` boundaries to improve Time to First Byte (TTFB).
+- [x] **Loading UI**: Implement `loading.tsx` for route-level streaming and skeleton patterns.
+- [ ] **Partial Prerendering (PPR)**: (Experimental) Explore combining static and dynamic content in the same route.
 
-## Phase 4: Advanced (Future)
-- [ ] **Middleware**: Experiment with Next.js middleware.
-- [ ] **Suspense & Loading**: Implement streaming with `loading.tsx` and `<Suspense>`.
+## Phase 4: Advanced Patterns & Infrastructure
+- [ ] **Middleware**: Implement auth guards or header manipulation using Next.js Middleware.
+- [ ] **Caching**: Master the four layers of Next.js caching (Request Memoization, Data Cache, Full Route Cache, Router Cache).
+- [x] **Error Handling**: Use `error.tsx` for graceful degradation and `global-error.tsx` for root-level failures.
