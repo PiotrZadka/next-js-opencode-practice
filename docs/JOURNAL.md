@@ -33,3 +33,9 @@
 - **Documentation Alignment**: Updated README.md and AGENTS.md to remove unused configuration references (Cursor/Copilot) and standardize on npm.
 - **DX Standardization**: Documented the VSCode ESLint/Prettier auto-format-on-save setup to ensure consistent code style across the project.
 - **Boilerplate Cleanup**: Removed Vercel-specific links, buttons, and assets (`vercel.svg`) from the landing page and public directory to focus on the learning environment.
+- **Server Actions**: Implemented data mutations (`createPost`).
+- **Uncontrolled Forms**: Refactored form to be Uncontrolled using `FormData`.
+- **React 19 Forms**: Upgraded to `useActionState` for validation errors and pending states.
+- **Pattern Discussion**: Discussed the "Reducer" pattern of Server Actions (`prevState`).
+- **Cache Management**: Fixed caching issues with `revalidatePath`.
+- **Observation**: Piotr grasped the Uncontrolled Component shift quickly. He correctly identified that `prevState` was unused.

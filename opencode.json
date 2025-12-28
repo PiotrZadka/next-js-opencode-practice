@@ -7,7 +7,7 @@
         "projectId": "sandbox-481721"
       },
       "models": {
-        "gemini-3-flash-preview": {
+        "gemini-3-pro-preview": {
           "options": {
             "thinkingConfig": {
               "thinkingLevel": "high",
