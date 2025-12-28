@@ -37,10 +37,10 @@ export default async function PostsPage() {
         {posts.map((post) => (
           <div 
             key={post.id} 
-            className="p-6 border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-shadow bg-white"
+            className="p-6 border border-[var(--border)] rounded-lg shadow-sm hover:shadow-md transition-shadow bg-[var(--card)]"
           >
-            <h2 className="text-xl font-semibold mb-3 capitalize">{post.title}</h2>
-            <p className="text-gray-600 leading-relaxed">{post.body}</p>
+            <h2 className="text-xl font-semibold mb-3 capitalize text-foreground">{post.title}</h2>
+            <p className="text-foreground/80 leading-relaxed">{post.body}</p>
           </div>
         ))}
       </div>

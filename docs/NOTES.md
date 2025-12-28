@@ -4,17 +4,17 @@
 
 According to the Next.js documentation, you should use Client Components when you need interactivity, state, or browser-only APIs.
 
-| Feature | Server Component | Client Component |
-| :--- | :---: | :---: |
-| **State** (`useState`, `useReducer`) | No | Yes |
-| **Lifecycle** (`useEffect`, `useLayoutEffect`) | No | Yes |
-| **Browser APIs** (window, localStorage, etc.) | No | Yes |
-| **Events** (`onClick`, `onChange`, etc.) | No | Yes |
-| **Specific Hooks** (any custom hook using client-only features) | No | Yes |
-| Fetch data (directly) | Yes | No |
-| Access backend resources (directly) | Yes | No |
-| Keep sensitive info (API keys, etc.) | Yes | No |
-| Large dependencies (on server) | Yes | No |
+| Feature                                                         | Server Component | Client Component |
+| :-------------------------------------------------------------- | :--------------: | :--------------: |
+| **State** (`useState`, `useReducer`)                            |        No        |       Yes        |
+| **Lifecycle** (`useEffect`, `useLayoutEffect`)                  |        No        |       Yes        |
+| **Browser APIs** (window, localStorage, etc.)                   |        No        |       Yes        |
+| **Events** (`onClick`, `onChange`, etc.)                        |        No        |       Yes        |
+| **Specific Hooks** (any custom hook using client-only features) |        No        |       Yes        |
+| Fetch data (directly)                                           |       Yes        |        No        |
+| Access backend resources (directly)                             |       Yes        |        No        |
+| Keep sensitive info (API keys, etc.)                            |       Yes        |        No        |
+| Large dependencies (on server)                                  |       Yes        |        No        |
 
 ## Async Server Components
 
@@ -30,6 +30,7 @@ async function MyComponent() {
 ## Data Fetching in RSC
 
 React Server Components (RSC) simplify data fetching:
+
 - **No `useEffect` or `useState` required**: Data can be fetched directly in the component body using `async/await`.
 - **Server-side execution**: Fetching happens on the server, reducing the amount of work the browser needs to do.
 - **Zero Bundle Size**: The logic used for fetching (like `sql` queries or internal API calls) stays on the server. 0kb of JavaScript is sent to the client for the fetch logic itself.
@@ -49,3 +50,17 @@ Next.js leans heavily on folder-based routing and specific file naming conventio
 ## Architectural Pattern: Client Leaves
 
 To maximize the benefits of Server Components, aim to keep Client Components at the "leaves" of your component tree. Fetch data in the parent (Server Component) and pass it as props to interactive children (Client Components). This ensures that only the interactive parts of the UI send JavaScript to the browser.
+
+## Developer Experience (DX) & Tooling
+
+### Package Manager Standardization
+
+Standardizing on a single package manager (`npm`) is critical to prevent lockfile conflicts. Mixing managers (like `npm` and `yarn`) leads to disparate dependency graphs, inconsistent environments, and elusive "it works on my machine" bugs.
+
+### Automated Consistency
+
+Code consistency is enforced automatically via ESLint and Prettier, configured to "Format on Save" in VSCode (defined in `.vscode/settings.json`). This removes the cognitive load of manual formatting and ensures that all contributions adhere to the project's stylistic standards without manual intervention.
+
+### Focused Learning Environment
+
+Removing unused boilerplate, such as Vercel-specific references and default assets, is essential for maintaining a focused learning environment. By stripping away non-essential clutter, the codebase remains intentional, making it easier to track changes and understand the core architecture without distraction.

@@ -26,8 +26,8 @@ export default function NavLink({ href, children }: NavLinkProps) {
       href={href}
       className={`px-3 py-2 rounded-md transition-colors ${
         isActive 
-          ? 'text-blue-600 font-semibold border-b-2 border-blue-600' 
-          : 'text-gray-600 hover:text-blue-500'
+          ? 'text-orange-600 dark:text-orange-500 font-semibold' 
+          : 'text-foreground/60 hover:text-orange-600 dark:hover:text-orange-500'
       }`}
     >
       {children}

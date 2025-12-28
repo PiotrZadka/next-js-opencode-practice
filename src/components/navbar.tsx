@@ -10,7 +10,7 @@ import NavLink from './nav-link';
  */
 export default function Navbar() {
   return (
-    <nav className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
+    <nav className="flex items-center justify-between p-4 border-b border-[var(--border)] bg-[var(--background)]">
       <div className="flex gap-4">
         <NavLink href="/">Home</NavLink>
         <NavLink href="/about">About</NavLink>
