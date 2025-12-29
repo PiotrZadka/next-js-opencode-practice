@@ -1,6 +1,10 @@
 # Agent Guidelines
 
+## The Session Start
 **IMPORTANT**: Upon starting a session, **ALWAYS read `docs/PLAN.md`** for goals and **`docs/JOURNAL.md`** for history/context.
+
+## The Session End
+**IMPORTANT**: At any point if user states end of session **ALWAYS read `docs/SESSION_END.md`** for a session wrap up procedure.
 
 ## The Learning Suite
 
