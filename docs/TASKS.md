@@ -8,17 +8,19 @@ Use this file to track specific implementation tasks. Mark them as complete (`[x
 - [x] **Data Fetching**: Fetch data directly in `async` Server Components using native `fetch` with caching/revalidation strategies.
 - [x] **Layouts & Composition**: Optimize layout shifts by using nested layouts and passing Client Components as children to Server Components to maintain server-side rendering for as much of the tree as possible.
 
-## Phase 2: React 19 & Server Actions
+## Phase 2: React 19 & Server Actions (The "Mutations" Chapter)
 
 - [x] **Server Actions**: Implement data mutations using Server Actions instead of traditional API Route Handlers.
 - [x] **Enhanced Forms**: Use React 19 `useActionState` (formerly `useFormState`) for handling form response data and errors.
-- [ ] **Pending States**: Implement `useFormStatus` to handle loading states in nested form elements.
+- [ ] **Real Persistence**: Replace JSONPlaceholder with a local file-based DB (e.g., writing to a `db.json`). _Why?_ To demonstrate `revalidatePath` actually updating the UI (JSONPlaceholder doesn't persist writes).
+- [ ] **Component Composition & `useFormStatus`**: Refactor the submit button into a separate component. _Why?_ To understand how to access pending state in child components without prop drilling.
+- [ ] **Form Reset Patterns**: Implement a strategy to clear the form after a successful submission. _Why?_ "Uncontrolled" forms don't reset automatically.
 - [ ] **Optimistic Updates**: Use `useOptimistic` to provide instant UI feedback during Server Action execution.
 
-## Phase 3: Performance & Streaming
+## Phase 3: Performance & Streaming (The "UX" Chapter)
 
-- [ ] **Streaming & Suspense**: Break down a heavy page into chunks using `<Suspense>` boundaries to improve Time to First Byte (TTFB).
 - [x] **Loading UI**: Implement `loading.tsx` for route-level streaming and skeleton patterns.
+- [ ] **Granular Suspense**: Add artificial delays to your data fetching. Refactor `page.tsx` to not block the whole page, but use `<Suspense>` boundaries around just the list. _Why?_ To understand "Streaming HTML".
 - [ ] **Partial Prerendering (PPR)**: (Experimental) Explore combining static and dynamic content in the same route.
 
 ## Phase 4: Advanced Patterns & Infrastructure

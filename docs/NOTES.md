@@ -64,3 +64,7 @@ Code consistency is enforced automatically via ESLint and Prettier, configured t
 ### Focused Learning Environment
 
 Removing unused boilerplate, such as Vercel-specific references and default assets, is essential for maintaining a focused learning environment. By stripping away non-essential clutter, the codebase remains intentional, making it easier to track changes and understand the core architecture without distraction.
+
+## Testing Server Actions (The "Mock" Reality)
+
+When learning Server Actions, avoid using read-only APIs like JSONPlaceholder for mutations. Because they don't persist data, `revalidatePath` won't update the UI, leading to confusion. Use a local file (e.g., `db.json`) or a real database to properly test the full mutation lifecycle of "Mutate -> Revalidate -> Refetch".
