@@ -40,6 +40,11 @@
 - **Cache Management**: Fixed caching issues with `revalidatePath`.
 - **Observation**: Piotr grasped the Uncontrolled Component shift quickly. He correctly identified that `prevState` was unused.
 
+## 2025-12-30
+
+- **Workflow Automation**: Analyzed the feasibility of using GitHub MCP for "session end" code pushes. Determined that standard Git commands are superior for maintaining history and preventing divergence.
+- **Protocol Update**: Updated `docs/SESSION_END.md` to include explicit steps for staging, committing, and pushing changes at the end of every session.
+
 ## 2025-12-29
 
 - **Curriculum Audit**: Reviewed progress with `@architect` and `@tutor`. Identified a critical gap in learning Server Actions: JSONPlaceholder does not persist data, making `revalidatePath` ineffective for demonstrating UI updates.

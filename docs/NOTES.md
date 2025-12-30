@@ -68,3 +68,10 @@ Removing unused boilerplate, such as Vercel-specific references and default asse
 ## Testing Server Actions (The "Mock" Reality)
 
 When learning Server Actions, avoid using read-only APIs like JSONPlaceholder for mutations. Because they don't persist data, `revalidatePath` won't update the UI, leading to confusion. Use a local file (e.g., `db.json`) or a real database to properly test the full mutation lifecycle of "Mutate -> Revalidate -> Refetch".
+
+## Session End Workflow: Git vs MCP
+
+Automating "session end" code pushes is best handled via standard Git commands (`git add`, `commit`, `push`) rather than specialized tools like GitHub MCP.
+
+- **Standard Git**: Preserves commit history, handles merges/rebases naturally, and works with the local repository state.
+- **GitHub MCP**: Designed for API interactions (Issues, PRs) or cloud-based agents. Pushing files via MCP creates new commits on the remote without local context, leading to history divergence.
