@@ -75,3 +75,15 @@ Automating "session end" code pushes is best handled via standard Git commands (
 
 - **Standard Git**: Preserves commit history, handles merges/rebases naturally, and works with the local repository state.
 - **GitHub MCP**: Designed for API interactions (Issues, PRs) or cloud-based agents. Pushing files via MCP creates new commits on the remote without local context, leading to history divergence.
+
+## Prisma in Next.js
+
+### The Singleton Pattern
+In development, Next.js clears the Node.js cache on every rebuild. This causes `const prisma = new PrismaClient()` to run repeatedly, exhausting the database connection pool.
+**Solution**: Attach the instance to `globalThis` so it survives hot reloads.
+
+### Prisma 7 & SQLite
+Prisma 7 introduces strict "Driver Adapters". For SQLite, the standard binary engine is being phased out in favor of `@prisma/adapter-better-sqlite3` or `@prisma/adapter-libsql`.
+We used **Better SQLite 3** for this project. This requires:
+1. `npm i better-sqlite3 @prisma/adapter-better-sqlite3`
+2. Configuring a custom `adapter` in the `PrismaClient` constructor.

@@ -50,3 +50,12 @@
 - **Curriculum Audit**: Reviewed progress with `@architect` and `@tutor`. Identified a critical gap in learning Server Actions: JSONPlaceholder does not persist data, making `revalidatePath` ineffective for demonstrating UI updates.
 - **Strategy Shift**: Revised `TASKS.md` to include building a local file-based mock DB. This will allow for true persistence and better testing of "Mutate -> Revalidate -> Refetch" flows.
 - **React 19 Focus**: Added specific tasks for `useFormStatus` (Component Composition) and Form Reset patterns to deepen understanding of the new hooks.
+
+## 2025-12-30
+
+- **Database Strategy**: Consulted @architect and opted for SQLite + Prisma over Docker/JSON to balance realism with low overhead.
+- **Prisma Setup**: Initialized Prisma with SQLite. Encountered Prisma 7 "Adapter" requirement for SQLite.
+- **Bleeding Edge**: Successfully configured `@prisma/adapter-better-sqlite3` to work with Next.js 16.
+- **Singleton Pattern**: Implemented the `globalThis` singleton pattern in `src/lib/db.ts` to prevent connection leaks during HMR.
+- **Verification**: Validated DB writes via a temporary test script.
+- **Next Steps**: Ready to integrate `prisma.post.create` into the Server Action.

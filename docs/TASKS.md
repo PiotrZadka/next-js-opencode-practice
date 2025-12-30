@@ -12,7 +12,12 @@ Use this file to track specific implementation tasks. Mark them as complete (`[x
 
 - [x] **Server Actions**: Implement data mutations using Server Actions instead of traditional API Route Handlers.
 - [x] **Enhanced Forms**: Use React 19 `useActionState` (formerly `useFormState`) for handling form response data and errors.
-- [ ] **Real Persistence**: Replace JSONPlaceholder with a local file-based DB (e.g., writing to a `db.json`). _Why?_ To demonstrate `revalidatePath` actually updating the UI (JSONPlaceholder doesn't persist writes).
+- [ ] **Real Persistence (SQLite + Prisma)**:
+  - [x] **Setup**: Initialize Prisma (`npm i -D prisma` & `npx prisma init`) with SQLite provider.
+  - [x] **Schema**: Define a `Post` model (id, title, body, createdAt) in `prisma/schema.prisma`.
+  - [x] **Client**: Generate the Prisma Client (`npx prisma generate`) and create a singleton instance to prevent connection warnings in dev.
+  - [x] **Migration**: Run `npx prisma migrate dev` to create the local `dev.db`.
+  - [ ] **Integration**: Refactor `src/app/posts/actions.ts` to use `prisma.post.create` instead of `fetch`.
 - [ ] **Component Composition & `useFormStatus`**: Refactor the submit button into a separate component. _Why?_ To understand how to access pending state in child components without prop drilling.
 - [ ] **Form Reset Patterns**: Implement a strategy to clear the form after a successful submission. _Why?_ "Uncontrolled" forms don't reset automatically.
 - [ ] **Optimistic Updates**: Use `useOptimistic` to provide instant UI feedback during Server Action execution.
