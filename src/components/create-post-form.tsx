@@ -1,20 +1,27 @@
 'use client';
 
 import { useActionState } from 'react';
-import { createPost, FormState } from '@/app/posts/actions';
+import { FormState } from '@/app/posts/actions';
+import SubmitButton from './submit-button';
 
 const initialState: FormState = {
   message: '',
+  successKey: undefined,
 };
 
-export default function CreatePostForm() {
-  const [state, formAction, isPending] = useActionState(
-    createPost,
-    initialState
-  );
+interface CreatePostFormProps {
+  action: (prevState: FormState, formData: FormData) => Promise<FormState>;
+}
+
+export default function CreatePostForm({ action }: CreatePostFormProps) {
+  const [state, formAction] = useActionState(action, initialState);
 
   return (
-    <form action={formAction} className="space-y-4">
+    <form
+      key={state.successKey} // Resets the form when successKey changes
+      action={formAction}
+      className="space-y-4"
+    >
       <div>
         <label
           htmlFor="title"
@@ -47,13 +54,7 @@ export default function CreatePostForm() {
           className="mt-1 block w-full border border-[var(--border)] rounded-md shadow-sm p-2 bg-[var(--card)] text-foreground placeholder:text-foreground/50"
         ></textarea>
       </div>
-      <button
-        type="submit"
-        disabled={isPending}
-        className="px-4 py-2 bg-foreground text-background rounded-md hover:opacity-90 disabled:opacity-50"
-      >
-        {isPending ? 'Creating...' : 'Create Post'}
-      </button>
+      <SubmitButton />
       {state.message && (
         <p aria-live="polite" className="mt-4 text-sm font-medium">
           {state.message}

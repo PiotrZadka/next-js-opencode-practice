@@ -1,5 +1,6 @@
 'use server';
 import { revalidatePath } from 'next/cache';
+import { db } from '@/lib/db';
 
 export type FormState = {
   message: string;
@@ -7,6 +8,7 @@ export type FormState = {
     title?: string;
     body?: string;
   };
+  successKey?: number; // Used to reset the form
 };
 
 export const createPost = async (
@@ -23,25 +25,19 @@ export const createPost = async (
     };
   }
 
-  console.log('Server Action: creating post...', { title, body });
-
   try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-      method: 'POST',
-      body: JSON.stringify({ title, body }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
+    await db.post.create({
+      data: {
+        title,
+        body,
       },
     });
 
-    if (!response.ok) {
-      throw new Error('Failed to create post');
-    }
-
-    console.log('Server Action: successfully created!');
-
     revalidatePath('/posts');
-    return { message: 'Post created successfully!' };
+    return {
+      message: 'Post created successfully!',
+      successKey: Date.now(), // Trigger form reset
+    };
   } catch (error) {
     console.error(error);
     return { message: 'Failed to create post' };

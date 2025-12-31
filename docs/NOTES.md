@@ -87,3 +87,18 @@ Prisma 7 introduces strict "Driver Adapters". For SQLite, the standard binary en
 We used **Better SQLite 3** for this project. This requires:
 1. `npm i better-sqlite3 @prisma/adapter-better-sqlite3`
 2. Configuring a custom `adapter` in the `PrismaClient` constructor.
+
+## React 19 / Next.js Patterns
+
+### Component Composition for Form Status
+`useFormStatus` is a hook that must be used inside a component rendered **within** the `<form>` element. To access the pending state of a form from its submit button, the button must be extracted into its own component (e.g., `<SubmitButton />`) and rendered inside the form.
+
+### Uncontrolled Form Reset
+In React 19/Next.js, forms using Server Actions (`action={formAction}`) are often uncontrolled. They do not automatically reset after submission.
+**The Key Hack**: A robust way to reset the form is to use a `key` prop on the `<form>` element. By changing this key (e.g., using a timestamp from the server response) upon successful submission, React forces the form component to remount, clearing all input fields.
+
+### Optimistic Updates with "Bridge Components"
+To implement `useOptimistic` (a Client Hook) in a Server Component architecture:
+1.  **The Bridge**: Create a Client Component (e.g., `PostsFeed`) that accepts initial server data.
+2.  **The Interceptor**: Inside the Bridge, create a wrapper function (`handleAction`) that calls `addOptimistic` *before* calling the real Server Action.
+3.  **The Injection**: Pass this wrapper function to the Form component via props. This connects the Form (Trigger) to the Bridge (State) to the Server (Persistence).

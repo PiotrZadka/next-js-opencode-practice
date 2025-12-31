@@ -17,10 +17,11 @@ Use this file to track specific implementation tasks. Mark them as complete (`[x
   - [x] **Schema**: Define a `Post` model (id, title, body, createdAt) in `prisma/schema.prisma`.
   - [x] **Client**: Generate the Prisma Client (`npx prisma generate`) and create a singleton instance to prevent connection warnings in dev.
   - [x] **Migration**: Run `npx prisma migrate dev` to create the local `dev.db`.
-  - [ ] **Integration**: Refactor `src/app/posts/actions.ts` to use `prisma.post.create` instead of `fetch`.
-- [ ] **Component Composition & `useFormStatus`**: Refactor the submit button into a separate component. _Why?_ To understand how to access pending state in child components without prop drilling.
-- [ ] **Form Reset Patterns**: Implement a strategy to clear the form after a successful submission. _Why?_ "Uncontrolled" forms don't reset automatically.
-- [ ] **Optimistic Updates**: Use `useOptimistic` to provide instant UI feedback during Server Action execution.
+  - [x] **Integration**: Refactor `src/app/posts/actions.ts` to use `prisma.post.create` instead of `fetch`.
+- [x] **Component Composition & `useFormStatus`**: Refactor the submit button into a separate component. _Why?_ To understand how to access pending state in child components without prop drilling.
+- [x] **Form Reset Patterns**: Implement a strategy to clear the form after a successful submission. _Why?_ "Uncontrolled" forms don't reset automatically.
+  > **Note**: Current implementation resets seemingly "magically" or via browser default behavior on successful navigation/revalidation. Requires further investigation to confirm exact mechanism. We have set a key to form so taht when it changes it will clear input fields.
+- [x] **Optimistic Updates**: Use `useOptimistic` to provide instant UI feedback during Server Action execution.
 
 ## Phase 3: Performance & Streaming (The "UX" Chapter)
 

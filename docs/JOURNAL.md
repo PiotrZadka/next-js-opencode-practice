@@ -59,3 +59,10 @@
 - **Singleton Pattern**: Implemented the `globalThis` singleton pattern in `src/lib/db.ts` to prevent connection leaks during HMR.
 - **Verification**: Validated DB writes via a temporary test script.
 - **Next Steps**: Ready to integrate `prisma.post.create` into the Server Action.
+
+## 2025-12-31
+
+- **Persistence Integration**: Replaced JSONPlaceholder with local SQLite + Prisma. Fixed a "race condition" in the Server Action by adding `await` to the DB call.
+- **Component Composition**: Extracted `SubmitButton` to utilize `useFormStatus` correctly (accessing the parent form's context).
+- **Form Reset**: Implemented the "Key Hack" pattern (using `successKey`) to reliably reset uncontrolled forms after submission.
+- **Optimistic UI**: Implemented `useOptimistic` via a "Bridge Component" (`PostsFeed`). Connected the Client Form to the Optimistic State by passing a wrapped action prop.

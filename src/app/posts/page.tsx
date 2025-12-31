@@ -1,4 +1,5 @@
-import CreatePostForm from '../../components/create-post-form';
+import { db } from '@/lib/db';
+import PostsFeed from '@/components/posts-feed';
 
 interface Post {
   id: number;
@@ -22,36 +23,14 @@ interface Post {
  *    without being exposed to the client.
  */
 export default async function PostsPage() {
-  // Fetching happens on the server. Next.js extends the native fetch API
-  // to support caching and revalidation.
-  const response = await fetch(
-    'https://jsonplaceholder.typicode.com/posts?_limit=5'
-  );
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch posts');
-  }
-
-  const posts: Post[] = await response.json();
+  // Fetching happens on the server.
+  // We use Prisma to fetch data directly from the database.
+  const posts: Post[] = await db.post.findMany();
 
   return (
     <main className="min-h-screen p-8 font-[family-name:var(--font-geist-sans)]">
       <div className="mb-8">
-        <CreatePostForm />
-      </div>
-      <h1 className="text-3xl font-bold mb-8">Latest Posts</h1>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {posts.map((post) => (
-          <div
-            key={post.id}
-            className="p-6 border border-[var(--border)] rounded-lg shadow-sm hover:shadow-md transition-shadow bg-[var(--card)]"
-          >
-            <h2 className="text-xl font-semibold mb-3 capitalize text-foreground">
-              {post.title}
-            </h2>
-            <p className="text-foreground/80 leading-relaxed">{post.body}</p>
-          </div>
-        ))}
+        <PostsFeed posts={posts} />
       </div>
     </main>
   );
