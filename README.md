@@ -2,12 +2,36 @@
 
 This project is a sandbox for mastering **Next.js 16 (App Router)**, **React 19**, and **Tailwind CSS 4**.
 
+## Project Structure
+
+This is a structured learning project with AI-assisted workflows. See:
+
+- `docs/PLAN.md` - Learning goals and context
+- `docs/TASKS.md` - Progress checklist and roadmap
+- `docs/JOURNAL.md` - Session history and decisions
+- `AGENTS.md` - AI agent guidelines
+
 ## Getting Started
 
 First, install the dependencies:
 
 ```bash
 npm install
+```
+
+### Database Setup (Prisma + SQLite)
+
+This project uses SQLite with Prisma for local data persistence. After installing dependencies:
+
+```bash
+# Generate the Prisma client (required after cloning or schema changes)
+npx prisma generate
+
+# Apply database migrations (creates dev.db if it doesn't exist)
+npx prisma migrate dev
+
+# Optional: View/edit data with Prisma Studio
+npx prisma studio
 ```
 
 Then, run the development server:

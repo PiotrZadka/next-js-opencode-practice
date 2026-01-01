@@ -3,12 +3,7 @@
 import { useOptimistic } from 'react';
 import CreatePostForm from './create-post-form';
 import { createPost, FormState } from '@/app/posts/actions';
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+import type { Post } from '@/lib/types';
 
 export default function PostsFeed({ posts }: { posts: Post[] }) {
   const [optimisticPosts, addOptimisticPost] = useOptimistic(
@@ -21,7 +16,7 @@ export default function PostsFeed({ posts }: { posts: Post[] }) {
     const body = formData.get('body') as string;
 
     addOptimisticPost({
-      id: -1, // Temporary ID for optimistic state
+      id: -Date.now(), // Unique negative ID prevents key collisions on rapid submissions
       title,
       body,
     });
@@ -38,7 +33,7 @@ export default function PostsFeed({ posts }: { posts: Post[] }) {
           <div
             key={post.id}
             className={`p-6 border border-[var(--border)] rounded-lg shadow-sm hover:shadow-md transition-shadow bg-[var(--card)] ${
-              post.id === -1 ? 'opacity-50' : ''
+              post.id < 0 ? 'opacity-50' : ''
             }`}
           >
             <h2 className="text-xl font-semibold mb-3 capitalize text-foreground">

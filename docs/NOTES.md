@@ -79,26 +79,76 @@ Automating "session end" code pushes is best handled via standard Git commands (
 ## Prisma in Next.js
 
 ### The Singleton Pattern
+
 In development, Next.js clears the Node.js cache on every rebuild. This causes `const prisma = new PrismaClient()` to run repeatedly, exhausting the database connection pool.
 **Solution**: Attach the instance to `globalThis` so it survives hot reloads.
 
 ### Prisma 7 & SQLite
+
 Prisma 7 introduces strict "Driver Adapters". For SQLite, the standard binary engine is being phased out in favor of `@prisma/adapter-better-sqlite3` or `@prisma/adapter-libsql`.
 We used **Better SQLite 3** for this project. This requires:
+
 1. `npm i better-sqlite3 @prisma/adapter-better-sqlite3`
 2. Configuring a custom `adapter` in the `PrismaClient` constructor.
 
 ## React 19 / Next.js Patterns
 
 ### Component Composition for Form Status
+
 `useFormStatus` is a hook that must be used inside a component rendered **within** the `<form>` element. To access the pending state of a form from its submit button, the button must be extracted into its own component (e.g., `<SubmitButton />`) and rendered inside the form.
 
 ### Uncontrolled Form Reset
+
 In React 19/Next.js, forms using Server Actions (`action={formAction}`) are often uncontrolled. They do not automatically reset after submission.
 **The Key Hack**: A robust way to reset the form is to use a `key` prop on the `<form>` element. By changing this key (e.g., using a timestamp from the server response) upon successful submission, React forces the form component to remount, clearing all input fields.
 
 ### Optimistic Updates with "Bridge Components"
+
 To implement `useOptimistic` (a Client Hook) in a Server Component architecture:
+
 1.  **The Bridge**: Create a Client Component (e.g., `PostsFeed`) that accepts initial server data.
-2.  **The Interceptor**: Inside the Bridge, create a wrapper function (`handleAction`) that calls `addOptimistic` *before* calling the real Server Action.
+2.  **The Interceptor**: Inside the Bridge, create a wrapper function (`handleAction`) that calls `addOptimistic` _before_ calling the real Server Action.
 3.  **The Injection**: Pass this wrapper function to the Form component via props. This connects the Form (Trigger) to the Bridge (State) to the Server (Persistence).
+
+## Type Centralization Strategy
+
+### Why Centralize Types?
+
+1. **Single Source of Truth (DRY)**: Schema changes propagate automatically.
+2. **Type Safety Across Boundaries**: Server and Client components agree on data shapes.
+3. **Decoupling from Prisma**: A "view model" layer lets you transform DB output before exposing to UI.
+4. **IDE Experience**: "Go to Definition" lands in canonical location.
+
+### Implementation
+
+```typescript
+// src/lib/types.ts
+export interface Post {
+  id: number;
+  title: string;
+  body: string;
+}
+
+// Usage: import type { Post } from '@/lib/types';
+// The `type` keyword signals to bundler this can be erased at build time.
+```
+
+## OpenCode Agent Modes
+
+### Primary vs Subagent
+
+| Aspect      | Primary Agent     | Subagent                |
+| ----------- | ----------------- | ----------------------- |
+| Invocation  | `Tab` key cycling | `@mention` in message   |
+| Purpose     | Main conversation | Specialized tasks       |
+| Auto-invoke | No                | Yes (by primary agents) |
+
+### Agent Workflow Pattern
+
+```
+Planning → @architect ("How should I structure X?")
+Learning → @tutor ("Why does this pattern exist?")
+Building → @coder ("Implement this feature")
+Debugging → @debugger ("Why is this failing?")
+Review → @reviewer ("Audit my Server Action")
+```

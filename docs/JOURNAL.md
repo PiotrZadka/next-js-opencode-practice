@@ -40,25 +40,11 @@
 - **Cache Management**: Fixed caching issues with `revalidatePath`.
 - **Observation**: Piotr grasped the Uncontrolled Component shift quickly. He correctly identified that `prevState` was unused.
 
-## 2025-12-30
-
-- **Workflow Automation**: Analyzed the feasibility of using GitHub MCP for "session end" code pushes. Determined that standard Git commands are superior for maintaining history and preventing divergence.
-- **Protocol Update**: Updated `docs/SESSION_END.md` to include explicit steps for staging, committing, and pushing changes at the end of every session.
-
 ## 2025-12-29
 
 - **Curriculum Audit**: Reviewed progress with `@architect` and `@tutor`. Identified a critical gap in learning Server Actions: JSONPlaceholder does not persist data, making `revalidatePath` ineffective for demonstrating UI updates.
 - **Strategy Shift**: Revised `TASKS.md` to include building a local file-based mock DB. This will allow for true persistence and better testing of "Mutate -> Revalidate -> Refetch" flows.
 - **React 19 Focus**: Added specific tasks for `useFormStatus` (Component Composition) and Form Reset patterns to deepen understanding of the new hooks.
-
-## 2025-12-30
-
-- **Database Strategy**: Consulted @architect and opted for SQLite + Prisma over Docker/JSON to balance realism with low overhead.
-- **Prisma Setup**: Initialized Prisma with SQLite. Encountered Prisma 7 "Adapter" requirement for SQLite.
-- **Bleeding Edge**: Successfully configured `@prisma/adapter-better-sqlite3` to work with Next.js 16.
-- **Singleton Pattern**: Implemented the `globalThis` singleton pattern in `src/lib/db.ts` to prevent connection leaks during HMR.
-- **Verification**: Validated DB writes via a temporary test script.
-- **Next Steps**: Ready to integrate `prisma.post.create` into the Server Action.
 
 ## 2025-12-31
 
@@ -66,3 +52,14 @@
 - **Component Composition**: Extracted `SubmitButton` to utilize `useFormStatus` correctly (accessing the parent form's context).
 - **Form Reset**: Implemented the "Key Hack" pattern (using `successKey`) to reliably reset uncontrolled forms after submission.
 - **Optimistic UI**: Implemented `useOptimistic` via a "Bridge Component" (`PostsFeed`). Connected the Client Form to the Optimistic State by passing a wrapped action prop.
+
+## 2026-01-01
+
+- **Project Audit**: New model conducted comprehensive audit of agent setup, documentation structure, and codebase quality. Overall score: 8.5/10.
+- **Type Centralization**: Created `src/lib/types.ts` to consolidate the `Post` interface. Eliminates duplication across `page.tsx` and `posts-feed.tsx`. Added detailed JSDoc explaining the "why" (DRY, type safety across boundaries, Prisma decoupling).
+- **Optimistic ID Fix**: Changed `id: -1` to `id: -Date.now()` to prevent React key collisions on rapid form submissions.
+- **Agent Enhancement**: Created `@debugger` agent for runtime error investigation. Updated `AGENTS.md` with usage table and primary/subagent explanations.
+- **Documentation Cleanup**: Fixed JOURNAL.md date ordering, updated PLAN.md Active Context, improved README with Prisma setup instructions.
+- **Metadata Fix**: Updated `layout.tsx` metadata from boilerplate to reflect actual project purpose.
+- **Roadmap Expansion**: Added Phase 5 (Testing) and Phase 6 (Production Readiness) with authentication, deployment, and API Routes tasks.
+- **Job Readiness Discussion**: Assessed learning progress - current knowledge covers ~60% of Next.js interview topics. Key gaps: auth, testing, deployment, caching deep-dive.

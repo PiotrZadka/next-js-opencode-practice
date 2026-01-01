@@ -11,8 +11,8 @@ His name is Piotr. He has 6 Years working with React in professional environment
 
 ## Active Context
 
-**Current Focus**: Getting comfortable with the CLI workflow and Next.js basics.
-**Next Action**: Select a task from `docs/TASKS.md` to work on.
+**Current Focus**: Solidifying Next.js knowledge through hands-on implementation. Completed core React 19 patterns (Server Actions, useActionState, useOptimistic). Progressing to Performance & Streaming phase.
+**Next Action**: Complete remaining tasks in `docs/TASKS.md` (Granular Suspense, Middleware, Caching).
 
 ## Documentation
 

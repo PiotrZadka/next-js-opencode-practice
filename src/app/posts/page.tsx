@@ -1,11 +1,6 @@
 import { db } from '@/lib/db';
 import PostsFeed from '@/components/posts-feed';
-
-interface Post {
-  id: number;
-  title: string;
-  body: string;
-}
+import type { Post } from '@/lib/types';
 
 /**
  * PostsPage - Server Component
