@@ -6,7 +6,7 @@ This document serves as a checklist for any agent when a user wants to end a ses
 
 - [ ] **Update `docs/JOURNAL.md`**: Add a summary of the session's achievements, decisions, and any technical hurdles encountered.
 - [ ] **Sync `docs/TASKS.md`**: Ensure completed items are marked with `[x]` and new tasks discovered during the session are added.
-- [ ] **Update `docs/NOTES.md`**: Record any new concepts, patterns, or architecture decisions learned or established.
+- [ ] **Update `docs/NOTES.md`**: Record any new concepts, patterns, or architecture decisions learned or established, however only update this file if explicitly asked by the user.
 - [ ] **Review `AGENTS.md`**: Update agent instructions if new preferences or project-specific commands were established.
 - [ ] **Quality Assurance**:
   - [ ] Run `npm run lint` to ensure code style compliance.

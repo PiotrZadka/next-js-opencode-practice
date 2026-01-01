@@ -11,6 +11,7 @@
 ## The Learning Suite
 
 We use specialized agents to simulate a real-world software team and enforce structured learning.
+**IMPORTANT** Only update **NOTES.md** when explicitly asked by the user. Feel free to suggest updates to **NOTES.md** but do not update it on your own.
 
 ### Agent Types (Primary vs Subagent)
 
