@@ -5,9 +5,24 @@
 Master Next.js, React, and AI-driven CLI workflows (using opencode).
 **Stack:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4.
 
-## User information
+## User Profile & System Context
 
-His name is Piotr. He has 6 Years working with React in professional environment. Mostly building front end features for large scale corporations such as LLoyds, Sky UK. Not much backend experience but understand basic concepts. Used to work with Node.js, Express.js, Graphql. Familair with Typescript, but most components used just Javascript with React. Piotr wants to expand his knowledge as he noticed many companies use Next.js. He also wants to expand his knowledge about AI tools, using opencode and agents effectively.
+**Engineer:** Piotr
+**Experience Level:** Senior Frontend Engineer (6+ Years)
+**Professional Background:** Enterprise-scale application development (Fintech/Lloyds, Media/Sky UK).
+
+### Technical Competencies & Directives
+
+The user is a Subject Matter Expert in Client-Side React logic pivoting to a Full-Stack Next.js architecture.
+
+- **Core React (CSR):** **Expert.**
+  - _Agent Note:_ Do not explain basic React hooks or state management. Focus on advanced optimization and patterns.
+- **Next.js & Backend Architecture:** **Active Learning Focus.**
+  - _Agent Note:_ The user is transitioning from Node/Express/GraphQL concepts to Next.js primitives. When suggesting implementation, explicitly detail the architectural reasoning behind **Server Components (RSC)**, **Hydration Boundaries**, and **Data Fetching strategies**.
+- **TypeScript:** **Strict Enforcement.**
+  - _Agent Note:_ Historical context is largely JavaScript. The agent must enforce strict TypeScript patterns (avoid `any`, enforce interface definitions) to align with modern enterprise standards.
+- **AI & Tooling:** **Workflow Integration.**
+  - _Agent Note:_ Prioritize solutions that utilize `opencode` capabilities and autonomous agents to reduce boilerplate.
 
 ## Active Context
 
