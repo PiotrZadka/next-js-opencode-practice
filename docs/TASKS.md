@@ -26,7 +26,7 @@ Use this file to track specific implementation tasks. Mark them as complete (`[x
 ## Phase 3: Performance & Streaming (The "UX" Chapter)
 
 - [x] **Loading UI**: Implement `loading.tsx` for route-level streaming and skeleton patterns.
-- [ ] **Granular Suspense**: Add artificial delays to your data fetching. Refactor `page.tsx` to not block the whole page, but use `<Suspense>` boundaries around just the list. _Why?_ To understand "Streaming HTML".
+- [x] **Granular Suspense**: Add artificial delays to your data fetching. Refactor `page.tsx` to not block the whole page, but use `<Suspense>` boundaries around just the list. _Why?_ To understand "Streaming HTML".
 - [ ] **Partial Prerendering (PPR)**: (Experimental) Explore combining static and dynamic content in the same route.
 
 ## Phase 4: Advanced Patterns & Infrastructure

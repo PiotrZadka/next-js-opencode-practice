@@ -3,23 +3,38 @@
 import { useActionState } from 'react';
 import { FormState } from '@/app/posts/actions';
 import SubmitButton from './submit-button';
+import { createPost } from '@/app/posts/actions';
+import { usePostsContext } from './posts-provider';
 
 const initialState: FormState = {
   message: '',
   successKey: undefined,
 };
 
-interface CreatePostFormProps {
-  action: (prevState: FormState, formData: FormData) => Promise<FormState>;
-}
+export default function CreatePostForm() {
+  const { addOptimisticPost } = usePostsContext();
+  const [state, formAction] = useActionState(createPost, initialState);
 
-export default function CreatePostForm({ action }: CreatePostFormProps) {
-  const [state, formAction] = useActionState(action, initialState);
+  const handleSubmit = async (formData: FormData) => {
+    const title = formData.get('title') as string;
+    const body = formData.get('body') as string;
+
+    // Add optimistic post immediately
+    addOptimisticPost({
+      id: -Date.now(), // Negative ID for optimistic posts
+      title,
+      body,
+      createdAt: new Date(),
+    });
+
+    // Then call the server action
+    formAction(formData);
+  };
 
   return (
     <form
       key={state.successKey} // Resets the form when successKey changes
-      action={formAction}
+      action={handleSubmit}
       className="space-y-4"
     >
       <div>

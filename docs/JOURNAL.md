@@ -63,3 +63,11 @@
 - **Metadata Fix**: Updated `layout.tsx` metadata from boilerplate to reflect actual project purpose.
 - **Roadmap Expansion**: Added Phase 5 (Testing) and Phase 6 (Production Readiness) with authentication, deployment, and API Routes tasks.
 - **Job Readiness Discussion**: Assessed learning progress - current knowledge covers ~60% of Next.js interview topics. Key gaps: auth, testing, deployment, caching deep-dive.
+
+## 2026-01-02
+
+- **Granular Suspense**: Completed implementation of granular Suspense boundaries in `/posts` route. Split data fetching (`PostsList` - async Server Component) from UI rendering (`PostsFeed` - Client Component with `useOptimistic`). Added 3-second artificial delay to demonstrate streaming behavior.
+- **Context Architecture**: Implemented React Context pattern to share `addOptimisticPost` function across async boundaries. Discovered and solved the "context timing problem" where `CreatePostForm` renders before `PostsFeed` provides the context value.
+- **Graceful Degradation**: Applied progressive enhancement pattern by returning a safe no-op function from `usePostsContext()` when context isn't ready yet. This allows the form to render immediately while optimistic updates become available after initial data loads.
+- **New Components**: Created `PostsProvider` (context wrapper), `PostsList` (data fetcher), and `PostsListSkeleton` (loading UI).
+- **Architectural Learning**: Demonstrated the challenge of coordinating state across Server/Client boundaries with Suspense streaming. Key insight: optimistic UI is a progressive enhancement, not a requirement for core functionality.
