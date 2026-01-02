@@ -69,5 +69,5 @@
 - **Granular Suspense**: Completed implementation of granular Suspense boundaries in `/posts` route. Split data fetching (`PostsList` - async Server Component) from UI rendering (`PostsFeed` - Client Component with `useOptimistic`). Added 3-second artificial delay to demonstrate streaming behavior.
 - **Context Architecture**: Implemented React Context pattern to share `addOptimisticPost` function across async boundaries. Discovered and solved the "context timing problem" where `CreatePostForm` renders before `PostsFeed` provides the context value.
 - **Graceful Degradation**: Applied progressive enhancement pattern by returning a safe no-op function from `usePostsContext()` when context isn't ready yet. This allows the form to render immediately while optimistic updates become available after initial data loads.
-- **New Components**: Created `PostsProvider` (context wrapper), `PostsList` (data fetcher), and `PostsListSkeleton` (loading UI).
+- **New Components**: Updated `PostsProvider` (context wrapper) to hold optimistic state. Refactored `PostsFeed` and `CreatePostForm` to consume it cleanly.
 - **Architectural Learning**: Demonstrated the challenge of coordinating state across Server/Client boundaries with Suspense streaming. Key insight: optimistic UI is a progressive enhancement, not a requirement for core functionality.

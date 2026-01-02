@@ -21,7 +21,7 @@ Use this file to track specific implementation tasks. Mark them as complete (`[x
 - [x] **Component Composition & `useFormStatus`**: Refactor the submit button into a separate component. _Why?_ To understand how to access pending state in child components without prop drilling.
 - [x] **Form Reset Patterns**: Implement a strategy to clear the form after a successful submission. _Why?_ "Uncontrolled" forms don't reset automatically.
   > **Note**: Current implementation resets seemingly "magically" or via browser default behavior on successful navigation/revalidation. Requires further investigation to confirm exact mechanism. We have set a key to form so taht when it changes it will clear input fields.
-- [x] **Optimistic Updates**: Use `useOptimistic` to provide instant UI feedback during Server Action execution.
+- [x] **Optimistic Updates**: Use `useOptimistic` to provide instant UI feedback during Server Action execution. Refactor `PostsProvider` to allow sharing state with `CreatePostForm` and `PostsFeed`.
 
 ## Phase 3: Performance & Streaming (The "UX" Chapter)
 
